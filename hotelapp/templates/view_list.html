@@ -1,0 +1,183 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Reservation Details</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url("{% static 'images/bgviewpg.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            margin: 0;
+            padding: 2px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 4px #82b7db;
+        }
+
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            background-color: rgba(40, 101, 125, 0.1); 
+            backdrop-filter: blur(100px);
+            -webkit-backdrop-filter: blur(100px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: #000;
+        }
+
+        th, td {
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            padding: 5px 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: rgba(0, 68, 102, 0.8);
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        td[colspan="4"] {
+            font-style: italic;
+            color: #333;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .update-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .home-button {
+            background-color: #1077f4;
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20%;
+        }
+
+        .home-button:hover {
+            background-color: #82b7db;
+        }
+
+
+        .update-button:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-button {
+            background-color: #ff000d;
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .delete-button:hover {
+            background-color: #b30000;
+        }
+
+        form {
+            margin: 0;
+        }
+
+        .back-home{
+            padding-left: 90%;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h2>Hotel Reservation List</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Pincode</th>
+            <th>Phonenumber</th>
+            <th>Email</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Adults</th>
+            <th>Kids</th>
+            <th>Payment Method</th>
+            <th>Special Request</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.address }}</td>
+            <td>{{ user.city }}</td>
+            <td>{{ user.state }}</td>
+            <td>{{ user.pincode }}</td>
+            <td>{{ user.phonenumber }}</td>
+            <td>{{ user.emailid }}</td>
+            <td>{{ user.date }}</td>
+            <td>{{ user.time }}</td>
+            <td>{{ user.adults }}</td>
+            <td>{{ user.kids }}</td>
+            <td>{{ user.payment_method }}</td>
+            <td>{{ user.specialrequest }}</td>
+            <td class="center">
+                <form action="update/{{ user.id }}" method="get">
+                    <button type="submit" class="update-button">Update</button>
+                </form>
+            </td>
+            <td class="center">
+                <a href="{% url 'delete' user.id %}">
+                    <button type="button" class="delete-button">Delete</button>
+                </a>
+            </td>
+
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="14">No records found.</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+            <div class="back-home">
+                <a href="{% url 'home' %}">
+                    <button type="button" class="home-button">Home</button>
+                </a>
+             </div>
+
+</body>
+</html>

@@ -1,0 +1,272 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hotel List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'images/pg.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; 
+            flex-direction: column;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            width: 100%;
+            background-color: transparent;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 25px 30px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            border-bottom: 0.2px solid white;
+            color: black;
+        }
+        .header-image {
+            border-radius: 0px;
+            margin-top: 70px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Center the form container */
+        .container {
+            background: rgb(225, 225, 255, 0.75);
+            backdrop-filter: blur(1px);
+            -webkit-backdrop-filter: blur(1px);
+            width: 50%;
+            padding: 30px 40px;
+            margin-top: 0px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 0px;
+        }
+
+        h1, h2, h3, h6 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .input-box {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-box label {
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .input-box input,
+        .input-box textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .input-box input[type="radio"] {
+            margin-right: 5px;
+            transform: scale(1.1);
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        .button-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .view-button {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .view-button:hover {
+            background-color: #2980b9;
+        }
+
+        .home-button {
+            background-color: #1077f4;
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 0px;
+            margin-left: 85%;
+        }
+
+        .home-button:hover {
+            background-color: #06629b;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+            .navbar a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <img src="{%static 'images/formimage.jpg' %}" alt="hotel image" width="835" height="250" class="header-image"/ >
+
+    <!-- NAVIGATION BAR -->
+    <div class="navbar">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'user_list' %}">Form</a>
+        <a href="{% url 'contact' %}">Contact</a>
+        <a href="{% url 'view_list' %}" target="_blank">View Records</a>
+    </div>
+
+    <!-- FORM SECTION -->
+    <section class="container" id="home">
+        <center>
+            <h1>Hotel Reservation Form</h1>
+            <h6>Please complete the form below.</h6>
+            <h3>Your registration will be verified prior to your arrival.</h3>
+        </center>
+        <form method="POST" action="{% url 'user_list' %}">
+            {% csrf_token %}
+
+            <div class="input-box">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required />
+            </div>
+
+            <div class="input-box">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" placeholder="Enter your address" required />
+            </div>
+
+            <div class="input-box">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" placeholder="Enter your city" required />
+            </div>
+
+            <div class="input-box">
+                <label for="state">State</label>
+                <input type="text" id="state" name="state" placeholder="Enter your State" required />
+            </div>
+
+            <div class="input-box">
+                <label for="pincode">Pincode</label>
+                <input type="number" id="pincode" name="pincode" placeholder="Enter your Pincode" required />
+            </div>
+
+            <div class="input-box">
+                <label for="phone">Phone Number</label>
+                <input type="number" id="phone" name="phonenumber" placeholder="Enter your Number" required />
+            </div>
+
+            <div class="input-box">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="emailid" placeholder="myname@gmail.com" required />
+            </div>
+
+            <div class="input-box">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" required />
+            </div>
+
+            <div class="input-box">
+                <label for="time">Time</label>
+                <input type="time" id="time" name="time" required />
+            </div>
+
+            <div class="input-box">
+                <label for="adults">Number of Adults</label>
+                <input type="number" id="adults" name="adults" placeholder="ex: 23" required />
+            </div>
+
+            <div class="input-box">
+                <label for="kids">Number of kids (optional)</label>
+                <input type="number" id="kids" name="kids" placeholder="ex: 2" />
+            </div>
+
+            <div class="input-box">
+                <label>Payment Method</label>
+                <input type="radio" id="cash" name="payment_method" value="cash" />
+                <label for="cash" style="display:inline;">Cash</label>
+                <input type="radio" id="card" name="payment_method" value="card" />
+                <label for="card" style="display:inline;">Card</label>
+            </div>
+
+            <div class="input-box">
+                <label for="request">Do you have any special request?</label>
+                <textarea id="request" name="specialrequest" rows="4" placeholder="Type here..."></textarea>
+            </div>
+            <div class="back-home">
+                <a href="{% url 'home' %}">
+                    <button type="button" class="home-button">Home</button>
+                </a>
+             </div>
+            <center>
+
+                <input type="submit" value="Submit" />
+
+            </center>
+
+
+
+
+        </form>
+    </section>
+
+</body>
+</html>
