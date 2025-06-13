@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-e+985ovpff45@kpg(hj(pphvmxts--*!@hsj+(d1lm(l=9cxqf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['hotelbookingsystem-5qvj.onrender.com']
+ALLOWED_HOSTS = ['hotelbookingsystem-plr2.onrender.com']
 
 
 
@@ -90,16 +90,16 @@ DATABASES = {
     'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',  
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',  
-        'PORT': '5432',
-    }
-}
+#DATABASES = {
+    #'default': {
+    #    'ENGINE': 'django.db.backends.postgresql',
+    #    'NAME': 'postgres',  
+    #    'USER': 'postgres',
+    #    'PASSWORD': 'admin',
+    #    'HOST': 'localhost',  
+    #    'PORT': '5432',
+    #}
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
