@@ -27,7 +27,14 @@ SECRET_KEY = 'django-insecure-e+985ovpff45@kpg(hj(pphvmxts--*!@hsj+(d1lm(l=9cxqf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['hotelbookingsystem-plr2.onrender.com']
+#ALLOWED_HOSTS = ['hotelbookingsystem-plr2.onrender.com']
+ALLOWED_HOSTS = [
+    'hotelbookingsystem-plr2.onrender.com',
+    '0.0.0.0',         # gunicorn binds here on Render's container
+    '127.0.0.1',       # for local dev
+    'localhost',       # for local dev
+]
+
 
 
 
