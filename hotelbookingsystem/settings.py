@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-e+985ovpff45@kpg(hj(pphvmxts--*!@hsj+(d1lm(l=9cxqf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['hotelbookingsystem-5qvj.onrender.com']git add render.yaml
+ALLOWED_HOSTS = ['hotelbookingsystem-5qvj.onrender.com']
+
 
 
 # Application definition
@@ -138,10 +139,8 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Default primary key field type
