@@ -757,9 +757,9 @@
         <div class="header-top">
             <div class="container">
                 <div class="contact-info">
-                    <span><i class="fas fa-phone"></i> +1 (555) 123-4567</span>
-                    <span><i class="fas fa-envelope"></i> reservations@royalhaveli.com</span>
-                    <span><i class="fas fa-map-marker-alt"></i> 123 Luxury Street, Mumbai, India</span>
+                    <span><i class="fas fa-phone"></i> 7010521165 </span>
+                    <span><i class="fas fa-envelope"></i> manojggm14@gmail.com</span>
+                    <span><i class="fas fa-map-marker-alt"></i> 123 Luxury Street, Bangalore, India</span>
                 </div>
                 <div class="header-social">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -798,16 +798,30 @@
                     
                     <!-- User authentication simulation -->
                     <div class="user-dropdown">
-                        <a href="#" class="nav-link user-profile">
-                            <i class="fas fa-user-circle"></i> Guest
-                            <i class="fas fa-chevron-down"></i>
-                        </a>
-                        <div class="dropdown-content">
-                            <a href="#"><i class="fas fa-user"></i> My Profile</a>
-                            <a href="#"><i class="fas fa-cog"></i> Settings</a>
-                            <a href="{% url 'login_register'%}"><i class="fas fa-sign-in-alt"></i> Login</a>
-                        </div>
+                        {% if user.is_authenticated %}
+                            <a href="#" class="nav-link user-profile">
+                                <i class="fas fa-user-circle"></i>
+                                {{ user.get_full_name|default:user.username }}
+                                <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <div class="dropdown-content">
+                                <a href="#"><i class="fas fa-user"></i> My Profile</a>
+                                <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                                <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        {% else %}
+                            <a href="#" class="nav-link user-profile">
+                                <i class="fas fa-user-circle"></i> Guest
+                                <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <div class="dropdown-content">
+                                <a href="{% url 'login_register' %}">
+                                    <i class="fas fa-sign-in-alt"></i> Login
+                                </a>
+                            </div>
+                        {% endif %}
                     </div>
+
                 </div>
 
                 <div class="mobile-toggle" id="mobileToggle">
@@ -1039,9 +1053,9 @@
                 <div class="footer-section">
                     <h4>Contact Info</h4>
                     <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Luxury Street, Mumbai, India</li>
-                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-                        <li><i class="fas fa-envelope"></i> info@royalhaveli.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Luxury Street, Bangalore, India</li>
+                        <li><i class="fas fa-phone"></i> +91 7010521165</li>
+                        <li><i class="fas fa-envelope"></i> manojggm14@gmail.com</li>
                         <li><i class="fas fa-clock"></i> 24/7 Reception</li>
                     </ul>
                 </div>
@@ -1064,10 +1078,10 @@
 
     <!-- Floating Action Buttons -->
     <div class="floating-actions">
-        <a href="https://wa.me/15551234567" class="floating-btn whatsapp" target="_blank">
+        <a href="https://wa.me/7010521165" class="floating-btn whatsapp" target="_blank">
             <i class="fab fa-whatsapp"></i>
         </a>
-        <a href="tel:+15551234567" class="floating-btn phone">
+        <a href="tel:7010521165" class="floating-btn phone">
             <i class="fas fa-phone"></i>
         </a>
         <button class="floating-btn chat" id="chatButton">
@@ -1114,7 +1128,7 @@
             
             // Chat button functionality
             document.getElementById('chatButton').addEventListener('click', function() {
-                alert('Our virtual concierge will assist you shortly. In the meantime, you can call us at +1 (555) 123-4567');
+                alert('Our virtual concierge will assist you shortly. In the meantime, you can call us at 7010521165');
             });
             
             // Newsletter form submission
