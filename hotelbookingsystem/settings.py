@@ -25,16 +25,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-e+985ovpff45@kpg(hj(pphvmxts--*!@hsj+(d1lm(l=9cxqf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-#ALLOWED_HOSTS = ['hotelbookingsystem-plr2.onrender.com']
-ALLOWED_HOSTS = [
-    'hotelbookingsystem-plr2.onrender.com',
-    '0.0.0.0',         # gunicorn binds here on Render's container
-    '127.0.0.1',       # for local dev
-    'localhost', 
-    '192.168.0.4',      # for local dev
+ALLOWED_HOSTS = ['.onrender.com']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.onrender.com'
 ]
+
+
+# ALLOWED_HOSTS = [
+#     'hotelbookingsystem-plr2.onrender.com',
+#     '0.0.0.0',         # gunicorn binds here on Render's container
+#     '127.0.0.1',       # for local dev
+#     'localhost', 
+#     '192.168.0.4',      # for local dev
+# ]
 
 
 # Application definition
@@ -60,6 +66,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -68,6 +75,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'hotelbookingsystem.urls'
 
@@ -90,22 +99,35 @@ WSGI_APPLICATION = 'hotelbookingsystem.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+from pathlib import Path
+import os
+import dj_database_url
+from dotenv import load_dotenv
 
-#DATABASES = {
-  #  'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
-#}
+# Load environment variables
+load_dotenv()
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',  
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',  
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600,
+    )
 }
+
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',  
+#         'USER': 'postgres',
+#         'PASSWORD': 'admin',
+#         'HOST': 'localhost',  
+#         'PORT': '5432',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
