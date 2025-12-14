@@ -175,3 +175,9 @@ def register_form(request):
 
 def login_submit(request):
     return render(request,'homepage.html')
+
+from django.contrib.auth import logout
+
+def logout_view(request):
+    logout(request)
+    return redirect('login_register') 

@@ -14,6 +14,8 @@ urlpatterns = [
     path('contact/', views.contact_view, name='contact'),
 
     path('login/', views.login_register_page, name='login_register'),
+    path('logout/', views.logout_view, name='logout'),  # <-- Add this
+
 
     path('login/submit/', views.login_view, name='login_submit'),
     path('register/submit/', views.register_form, name='register_submit'),

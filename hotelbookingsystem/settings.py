@@ -25,14 +25,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-e+985ovpff45@kpg(hj(pphvmxts--*!@hsj+(d1lm(l=9cxqf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 #ALLOWED_HOSTS = ['hotelbookingsystem-plr2.onrender.com']
 ALLOWED_HOSTS = [
     'hotelbookingsystem-plr2.onrender.com',
     '0.0.0.0',         # gunicorn binds here on Render's container
     '127.0.0.1',       # for local dev
-    'localhost',       # for local dev
+    'localhost', 
+    '192.168.0.4',      # for local dev
 ]
 
 
@@ -183,7 +184,7 @@ SOCIALACCOUNT_PROVIDERS = {
     'google' :{
         'App':{
             'client_id':'972398140451-4bi1tusd7vrf4kgha73lv78tt7a7mb3o.apps.googleusercontent.com',
-            'secret':'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',
+            'secret':'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',
             'key':''
         },
         'SCOPE': ['profile', 'email'],
